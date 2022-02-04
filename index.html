@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <title>CQN Socket.IO Demo</title>
+    <style>
+      body { font: 11px Helvetica, Arial; }
+      h3 { text-align: center; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 20px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+      #messages { margin-bottom: 40px }
+      .messagecontainer {
+        border-style: solid;
+        display: inline-block;
+        width: 400px;
+        height: 400px;
+        margin: 9px;
+      }
+    </style>
+  </head>
+<body>
+
+<div class="messagecontainer">
+<h3>Latest Messages</h3>
+<ul id="messages"></ul>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+      $(function () {
+        var socket = io();
+        socket.on('message', function(msg){
+          $('#messages').empty();
+          $.each(JSON.parse(msg), function(idx, obj) {
+            $('#messages').append($('<li>').text(obj.ID + ' ' + obj.DESCRIPTION + '' + obj.TITLE));
+          });
+        });
+      });
+    </script>
+</div>
+
+<div>
+  <h2>CQN Socket.IO Demo</h2>
+  
+  </div>
+  
+</body>
+
+</html>
